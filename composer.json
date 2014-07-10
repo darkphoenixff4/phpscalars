@@ -1,0 +1,29 @@
+{
+    "name": "joefallon/phpscalars",
+    "type": "library",
+    "description": "This package contains a set of classes for boxing scalar values. It is very useful for type hinting and ensuring the correct type is always provide.",
+    "keywords": [ "PHP", "scalars", "type hinting" ],
+    "homepage": "https://github.com/joefallon/phpscalars",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Joe Fallon",
+            "email": "joseph.t.fallon@gmail.com",
+            "homepage": "http://blog.joefallon.net"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0"
+    },
+    "require-dev": {
+        "joefallon/phpautoloader": "~1.0",
+        "joefallon/kisstest":      "~1.0"
+    },
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-0":
+        {
+            "JoeFallon": "src/"
+        }
+    }
+}
