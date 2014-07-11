@@ -1,29 +1,19 @@
 <?php
+namespace JoeFallon\Scalars;
+
 /**
  * This class represents a number of arbitrary precision. Additionally,
  * this class is immutable.
  *
  * @author    Joseph Fallon <joseph.t.fallon@gmail.com>
- *
  * @copyright Copyright 2014 Joseph Fallon (All rights reserved)
- *
  * @license   MIT
  */
-namespace JoeFallon\Scalars;
-
-
 class Decimal
 {
-    /************************************************************************
-     * Instance Variables
-     ***********************************************************************/
-
     /* @var string */
     private $_value;
 
-    /************************************************************************
-     * Public Methods
-     ***********************************************************************/
 
     /**
      * __construct
@@ -174,10 +164,10 @@ class Decimal
      *
      * @param Decimal $value
      *
-     * @param float $maxDelta - This parameter is the maximum difference
-     * between the two values. This is because floats are very difficult
-     * to compare for exactness when equal. Reference the IEEE floating
-     * point standard.
+     * @param float   $maxDelta - This parameter is the maximum difference
+     *                          between the two values. This is because floats are very difficult
+     *                          to compare for exactness when equal. Reference the IEEE floating
+     *                          point standard.
      *
      * @return int
      */
