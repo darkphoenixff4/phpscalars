@@ -8,7 +8,11 @@
  */
 namespace JoeFallon\Scalars;
 
-
+/**
+ * Class Integer  All instances are immutable.
+ *
+ * @package JoeFallon\Scalars
+ */
 class Integer extends AbstractPrimitive
 {
     /**

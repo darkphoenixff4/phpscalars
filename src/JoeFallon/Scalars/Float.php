@@ -2,8 +2,7 @@
 namespace JoeFallon\Scalars;
 
 /**
- * This class represents a number of arbitrary precision. Additionally,
- * this class is immutable.
+ * This class represents a number of arbitrary precision.  All instances are immutable.
  *
  * @author    Joseph Fallon <joseph.t.fallon@gmail.com>
  * @copyright Copyright 2014 Joseph Fallon (All rights reserved)

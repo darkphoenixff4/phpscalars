@@ -1,26 +1,20 @@
 <?php
-/**
- * @author    Joseph Fallon <joseph.t.fallon@gmail.com>
- *
- * @copyright Copyright 2014 Joseph Fallon (All rights reserved)
- *
- * @license   MIT
- */
 namespace JoeFallon\Scalars;
 
-
+/**
+ * BigInt is used to represent an arbitrarily large integer.  All instances are
+ * immutable.
+ *
+ * @author    Joseph Fallon <joseph.t.fallon@gmail.com>
+ * @copyright Copyright 2014 Joseph Fallon (All rights reserved)
+ * @license   MIT
+ * @package   JoeFallon\Scalars
+ */
 final class BigInt
 {
-    /************************************************************************
-     * Instance Variables
-     ***********************************************************************/
-
-    /* @var string */
+    /** @var string */
     private $_value;
 
-    /************************************************************************
-     * Public Methods
-     ***********************************************************************/
 
     /**
      * @param string $value
@@ -32,6 +26,9 @@ final class BigInt
 
 
     /**
+     * This function adds $value to $this and returns a new BigInt representing the
+     * result.
+     *
      * @param  BigInt $value
      *
      * @return BigInt
@@ -45,6 +42,9 @@ final class BigInt
 
 
     /**
+     * This function subtracts $value from $this and returns a new BigInt representing
+     * the result.
+     *
      * @param  BigInt $value
      *
      * @return BigInt
@@ -58,6 +58,9 @@ final class BigInt
 
 
     /**
+     * This function multiplies $this by $value and returns a new BigInt representing
+     * the result.
+     *
      * @param  BigInt $value
      *
      * @return BigInt
@@ -71,6 +74,9 @@ final class BigInt
 
 
     /**
+     * This function divides $this by $value and returns a new BigInt representing the
+     * result.
+     *
      * @param  BigInt $value
      *
      * @return BigInt
@@ -84,6 +90,9 @@ final class BigInt
 
 
     /**
+     * This function divides $this by $value and returns a BigInt representing the
+     * modulus.
+     *
      * @param  BigInt $value
      *
      * @return BigInt
@@ -97,12 +106,10 @@ final class BigInt
 
 
     /**
-     * compare
-     *
-     * This function compares this Jtf_Integer with the provided value. If the
-     * provided value is greater than this value, then 1 is returned. If the
-     * provided value is less than this value, -1 is returned. If the provided
-     * value is equal to the current value, 0 is returned.
+     * This function compares $this with the provided value. If the provided value is
+     * greater than $this value, then 1 is returned. If the provided value is less than
+     * $this value, -1 is returned. If the provided value is equal to $this value, 0 is
+     * returned.
      *
      * Quick Reference:
      *
@@ -111,11 +118,6 @@ final class BigInt
      *  1 $this > $value
      *
      * @param BigInt $value
-     *
-     * @internal param float $maxDelta - This parameter is the maximum difference
-     *           between the two values. This is because floats are very difficult
-     *           to compare for exactness when equal. Reference the IEEE floating
-     *           point standard.
      *
      * @return int
      */
