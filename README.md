@@ -10,6 +10,20 @@ PHP Scalars is a set of classes that provides two main capabilities:
 2.  A set of classes for working with arbitrary large integers and arbitrarily precise
     floating point numbers.
 
+Installation
+------------
+
+The easiest way to install PHP Scalars is with
+[Composer](https://getcomposer.org/). Create the following `composer.json` file
+and run the `php composer.phar install` command to install it.
+
+```json
+{
+    "require": {
+        "joefallon/phpscalars": "*"
+    }
+}
+```
 
 Primitive Wrapper Classes
 -------------------------
