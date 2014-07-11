@@ -2,7 +2,8 @@
 namespace JoeFallon\Scalars;
 
 /**
- * Decimal represents a floating point number of arbitrary precision.  All instances are immutable.
+ * Decimal is a class used to represent a floating point number of arbitrary precision.
+ * All instances are immutable.
  *
  * @author    Joseph Fallon <joseph.t.fallon@gmail.com>
  * @copyright Copyright 2014 Joseph Fallon (All rights reserved)

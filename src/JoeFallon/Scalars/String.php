@@ -2,19 +2,23 @@
 namespace JoeFallon\Scalars;
 
 /**
- * String represents a scalar string value. All instances are immutable.
+ * String is a wrapper for a scalar string value. All instances are immutable.
  *
  * @author    Joseph Fallon <joseph.t.fallon@gmail.com>
  * @copyright Copyright 2014 Joseph Fallon (All rights reserved)
  * @license   MIT
  * @package   JoeFallon\Scalars
  */
-class String extends AbstractPrimitive
+class String
 {
+    /** @var string */
+    private $_value;
+
+
     /**
      * @param $value
      */
-    public function __construct($value)
+    public function __construct($value = '')
     {
         $this->_value = strval($value);
     }
@@ -25,6 +29,6 @@ class String extends AbstractPrimitive
      */
     public function getValue()
     {
-        return parent::getValue();
+        return $this->_value;
     }
 }

@@ -2,7 +2,7 @@
 namespace JoeFallon\Scalars;
 
 /**
- * BigInt is used to represent an arbitrarily large integer.  All instances are
+ * BigInt is a class used to represent an arbitrarily large integer.  All instances are
  * immutable.
  *
  * @author    Joseph Fallon <joseph.t.fallon@gmail.com>
@@ -58,7 +58,7 @@ final class BigInt
 
 
     /**
-     * This function multiplies $this by $value and returns a new BigInt representing
+     * This function multiplies $value by $this and returns a new BigInt representing
      * the result.
      *
      * @param  BigInt $value
@@ -90,7 +90,7 @@ final class BigInt
 
 
     /**
-     * This function divides $this by $value and returns a BigInt representing the
+     * This function divides $this by $value and returns a new BigInt representing the
      * modulus.
      *
      * @param  BigInt $value
@@ -106,16 +106,14 @@ final class BigInt
 
 
     /**
-     * This function compares $this with the provided value. If the provided value is
-     * greater than $this value, then 1 is returned. If the provided value is less than
-     * $this value, -1 is returned. If the provided value is equal to $this value, 0 is
-     * returned.
+     * This function compares $this with the provided $value. If the provided $value is
+     * greater than $this, then 1 is returned. If the provided value is less than
+     * $this, -1 is returned. If the provided value is equal to $this, 0 is returned.
      *
      * Quick Reference:
-     *
-     * -1 $this < $value
-     *  0 $this = $value
-     *  1 $this > $value
+     *      -1 $this < $value
+     *       0 $this = $value
+     *       1 $this > $value
      *
      * @param BigInt $value
      *

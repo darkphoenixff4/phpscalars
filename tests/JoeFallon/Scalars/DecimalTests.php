@@ -1,20 +1,15 @@
 <?php
-/**
- * This class represents a number of arbitrary precision. Additionally,
- * this class is immutable.
- *
- * @author    Joseph Fallon <joseph.t.fallon@gmail.com>
- *
- * @copyright Copyright 2014 Joseph Fallon (All rights reserved)
- *
- * @license   MIT
- */
-namespace tests\JoeFallon\PhpLibrary\Scalars;
+namespace tests\JoeFallon\Scalars;
 
 use JoeFallon\KissTest\UnitTest;
-use JoeFallon\PhpLibrary\Scalars\Decimal;
+use JoeFallon\Scalars\Decimal;
 
-
+/**
+ * @author    Joseph Fallon <joseph.t.fallon@gmail.com>
+ * @copyright Copyright 2014 Joseph Fallon (All rights reserved)
+ * @license   MIT
+ * @package   tests\JoeFallon\Scalars
+ */
 class DecimalTests extends UnitTest
 {
     public function test_add()
