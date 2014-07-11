@@ -1,7 +1,7 @@
 {
     "name": "joefallon/phpscalars",
     "type": "library",
-    "description": "This package contains a set of classes for boxing scalar values. It is very useful for type hinting and ensuring the correct type is always provide.",
+    "description": "This package contains a set of classes for wrapping/boxing scalar values. Also, classes are provided for working with arbitrarily large integers and arbitrarily precise floating point numbers.",
     "keywords": [ "PHP", "scalars", "type hinting" ],
     "homepage": "https://github.com/joefallon/phpscalars",
     "license": "MIT",
