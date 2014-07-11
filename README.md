@@ -166,12 +166,10 @@ $i2 = new BigInt(3);
 
 $i1->compare($i2);  // returns 1  ($i1 is greater than $i2)
 
-
 $i1 = new BigInt(3);
 $i2 = new BigInt(3);
 
 $i1->compare($i2);  // returns 0 ($i1 is equal to $i2)
-
 
 $i1 = new BigInt(3);
 $i2 = new BigInt(6);
