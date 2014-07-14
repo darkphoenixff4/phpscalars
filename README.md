@@ -45,16 +45,16 @@ Here are examples of the usage of the primitive wrappers:
 
 ```php
 $boolIn  = new Bool(true);       // <--- $boolIn is an instance of Bool
-$boolOut = $valIn->getValue();   // <--- $boolOut is true
+$boolOut = $boolIn->getValue();   // <--- $boolOut is true
 
 $floatIn  = new Float(3.14);     // <--- $floatIn is an instance of Float
-$floatOut = $valIn->getValue();  // <--- $floatOut is 3.14
+$floatOut = $floatIn->getValue();  // <--- $floatOut is 3.14
 
 $intIn  = new Integer(5);        // <--- $intIn is an instance of Integer
-$intOut = $valIn->getValue();    // <--- $intOut is 5
+$intOut = $intIn->getValue();    // <--- $intOut is 5
 
 $strIn  = new String('string');  // <--- $strIn is an instance of String
-$strOut = $valIn->getValue();    // <--- $strOut is 'string'
+$strOut = $strIn->getValue();    // <--- $strOut is 'string'
 ```
 
 BigInt and Decimal Classes
