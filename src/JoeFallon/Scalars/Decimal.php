@@ -17,30 +17,63 @@ class Decimal
 
 
     /**
-     * @param string $value
+     * @param Decimal|Integer|BigInt|Float|string|float|int $value
+     * @return string
+     * @throws \UnexpectedValueException
+     */
+    private static function convertToString($value)
+    {
+        if (method_exists($value, 'getValue')) {
+            return strval($value->getValue());
+        } elseif (is_numeric($value)) {
+            return strval($value);
+        } elseif (method_exists($value, 'toString')) {
+            return $value->toString();
+        } else {
+            throw new \UnexpectedValueException("Unable to convert the value '$value' to a proper string!");
+        }
+    }
+
+    /**
+     * @param Decimal|Integer|BigInt|Float|string|float|int $value
+     * @return Decimal
+     */
+    private static function convertToDecimal($value)
+    {
+        if ($value instanceof self)
+        {
+            return $value;
+        } else {
+            return new self(self::convertToString($value));
+        }
+    }
+
+
+    /**
+     * @param Decimal|Integer|BigInt|Float|string|float|int $value
      */
     public function __construct($value)
     {
-        $this->_value = strval($value);
+        $this->_value = self::convertToString($value);
     }
-
 
     /**
      * This function adds $value to $this and returns a new Decimal representing the
      * result.
      *
-     * @param  Decimal $value
+     * @param  Decimal|Integer|BigInt|Float|string|float|int $value
      *
      * @return Decimal
      */
-    public function add(Decimal $value)
+    public function add($value)
     {
+        $value     = self::convertToDecimal($value);
         $scale     = $this->getScale($value);
         $thisValue = $this->_value;
         $thatValue = $value->_value;
         $result    = bcadd($thisValue, $thatValue, $scale);
 
-        return new Decimal($result);
+        return new static($result);
     }
 
 
@@ -48,18 +81,19 @@ class Decimal
      * This function subtracts $value from $this and returns a new Decimal representing
      * the result.
      *
-     * @param  Decimal $value
+     * @param  Decimal|Integer|BigInt|Float|string|float|int $value
      *
      * @return Decimal
      */
-    public function subtract(Decimal $value)
+    public function subtract($value)
     {
+        $value     = self::convertToDecimal($value);
         $scale     = $this->getScale($value);
         $thisValue = $this->_value;
         $thatValue = $value->_value;
         $result    = bcsub($thisValue, $thatValue, $scale);
 
-        return new Decimal($result);
+        return new static($result);
     }
 
 
@@ -67,18 +101,19 @@ class Decimal
      * This function multiplies $value by $this and returns a new Decimal representing
      * the result.
      *
-     * @param  Decimal $value
+     * @param  Decimal|Integer|BigInt|Float|string|float|int $value
      *
      * @return Decimal
      */
-    public function multiply(Decimal $value)
+    public function multiply($value)
     {
+        $value     = self::convertToDecimal($value);
         $scale     = $this->getScale($value);
         $thisValue = $this->_value;
         $thatValue = $value->_value;
         $result    = bcmul($thisValue, $thatValue, $scale);
 
-        return new Decimal($result);
+        return new static($result);
     }
 
 
@@ -86,37 +121,39 @@ class Decimal
      * This function divides $this by $value and returns a new Decimal representing the
      * result.
      *
-     * @param  Decimal $value
+     * @param  Decimal|Integer|BigInt|Float|string|float|int $value
      *
      * @return Decimal
      */
-    public function divide(Decimal $value)
+    public function divide($value)
     {
+        $value     = self::convertToDecimal($value);
         $scale     = $this->getScale($value);
         $thisValue = $this->_value;
         $thatValue = $value->_value;
         $result    = bcdiv($thisValue, $thatValue, $scale);
 
-        return new Decimal($result);
+        return new static($result);
     }
 
 
     /**
-     * This functio raises $this to the power of $value and returns a new Decimal
+     * This function raises $this to the power of $value and returns a new Decimal
      * representing the result.
      *
-     * @param Decimal $value
+     * @param Decimal|Integer|BigInt|Float|string|float|int $value
      *
      * @return Decimal
      */
-    public function pow(Decimal $value)
+    public function pow($value)
     {
+        $value     = self::convertToDecimal($value);
         $scale     = $this->getScale($value);
         $thisValue = $this->_value;
         $thatValue = $value->_value;
         $result    = bcpow($thisValue, $thatValue, $scale);
 
-        return new Decimal($result);
+        return new static($result);
     }
 
 
@@ -131,7 +168,7 @@ class Decimal
      *       0 $this = $value
      *       1 $this > $value
      *
-     * @param Decimal $value
+     * @param Decimal|Integer|BigInt|Float|string|float|int $value
      * @param float   $maxDelta The maxDelta is the maximum allowed difference between
      *                          the two values. This is required due to floats being
      *                          difficult to compare for exactness when equal.
@@ -139,8 +176,9 @@ class Decimal
      *
      * @return int
      */
-    public function compare(Decimal $value, $maxDelta = 0.0000001)
+    public function compare($value, $maxDelta = 0.0000001)
     {
+        $value     = self::convertToDecimal($value);
         $scale     = $this->getScale($value);
         $thisValue = $this->_value;
         $thatValue = $value->_value;

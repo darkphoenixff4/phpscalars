@@ -10,10 +10,43 @@ namespace JoeFallon\Scalars;
  * @license   MIT
  * @package   JoeFallon\Scalars
  */
-final class BigInt
+class BigInt
 {
     /** @var string */
     private $_value;
+
+
+    /**
+     * @param BigInt|Integer|string|int $value
+     * @return string
+     * @throws \UnexpectedValueException
+     */
+    private static function convertToString($value)
+    {
+        if (method_exists($value, 'getValue')) {
+            return strval($value->getValue());
+        } elseif (is_numeric($value)) {
+            return strval($value);
+        } elseif (method_exists($value, 'toString')) {
+            return $value->toString();
+        } else {
+            throw new \UnexpectedValueException("Unable to convert the value '$value' to a proper string!");
+        }
+    }
+
+    /**
+     * @param BigInt|Integer|string|int $value
+     * @return BigInt
+     */
+    private static function convertToBigInt($value)
+    {
+        if ($value instanceof self)
+        {
+            return $value;
+        } else {
+            return new self(self::convertToString($value));
+        }
+    }
 
 
     /**
@@ -24,20 +57,20 @@ final class BigInt
         $this->_value = $value;
     }
 
-
     /**
      * This function adds $value to $this and returns a new BigInt representing the
      * result.
      *
-     * @param  BigInt $value
+     * @param  BigInt|Integer|string|int $value
      *
      * @return BigInt
      */
-    public function add(BigInt $value)
+    public function add($value)
     {
+        $value = self::convertToBigInt($value);
         $result = bcadd($this->_value, $value->_value, 0);
 
-        return new BigInt($result);
+        return new static($result);
     }
 
 
@@ -45,15 +78,16 @@ final class BigInt
      * This function subtracts $value from $this and returns a new BigInt representing
      * the result.
      *
-     * @param  BigInt $value
+     * @param  BigInt|Integer|string|int $value
      *
      * @return BigInt
      */
-    public function subtract(BigInt $value)
+    public function subtract($value)
     {
+        $value = self::convertToBigInt($value);
         $result = bcsub($this->_value, $value->_value, 0);
 
-        return new BigInt($result);
+        return new static($result);
     }
 
 
@@ -61,15 +95,16 @@ final class BigInt
      * This function multiplies $value by $this and returns a new BigInt representing
      * the result.
      *
-     * @param  BigInt $value
+     * @param  BigInt|Integer|string|int $value
      *
      * @return BigInt
      */
-    public function multiply(BigInt $value)
+    public function multiply($value)
     {
+        $value = self::convertToBigInt($value);
         $result = bcmul($this->_value, $value->_value, 0);
 
-        return new BigInt($result);
+        return new static($result);
     }
 
 
@@ -77,15 +112,16 @@ final class BigInt
      * This function divides $this by $value and returns a new BigInt representing the
      * result.
      *
-     * @param  BigInt $value
+     * @param  BigInt|Integer|string|int $value
      *
      * @return BigInt
      */
-    public function divide(BigInt $value)
+    public function divide($value)
     {
+        $value = self::convertToBigInt($value);
         $result = bcdiv($this->_value, $value->_value, 0);
 
-        return new BigInt($result);
+        return new static($result);
     }
 
 
@@ -93,15 +129,16 @@ final class BigInt
      * This function divides $this by $value and returns a new BigInt representing the
      * modulus.
      *
-     * @param  BigInt $value
+     * @param  BigInt|Integer|string|int $value
      *
      * @return BigInt
      */
-    public function modulus(BigInt $value)
+    public function modulus($value)
     {
+        $value = self::convertToBigInt($value);
         $result = bcmod($this->_value, $value->_value);
 
-        return new BigInt($result);
+        return new static($result);
     }
 
 
@@ -115,12 +152,13 @@ final class BigInt
      *       0 $this = $value
      *       1 $this > $value
      *
-     * @param BigInt $value
+     * @param BigInt|Integer|string|int $value
      *
      * @return int
      */
-    public function compare(BigInt $value)
+    public function compare($value)
     {
+        $value = self::convertToBigInt($value);
         if($this->_value < $value->_value)
         {
             return -1;
@@ -158,6 +196,10 @@ final class BigInt
             return '0';
         }
 
-        return rtrim($this->_value, '0.');
+        $val = $this->_value;
+        if (strpos($val, '.') !== false) {
+            $val = rtrim($val, '0');
+        }
+        return rtrim($val, '.');
     }
 }
