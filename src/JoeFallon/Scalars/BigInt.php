@@ -34,40 +34,25 @@ class BigInt
         }
     }
 
+
     /**
      * @param BigInt|Integer|string|int $value
-     * @return BigInt
-     */
-    private static function convertToBigInt($value)
-    {
-        if ($value instanceof self)
-        {
-            return $value;
-        } else {
-            return new self(self::convertToString($value));
-        }
-    }
-
-
-    /**
-     * @param string $value
      */
     public function __construct($value)
     {
-        $this->_value = $value;
+        $this->_value = self::convertToString($value);
     }
 
     /**
      * This function adds $value to $this and returns a new BigInt representing the
      * result.
      *
-     * @param  BigInt|Integer|string|int $value
+     * @param  BigInt
      *
      * @return BigInt
      */
-    public function add($value)
+    public function add(BigInt $value)
     {
-        $value = self::convertToBigInt($value);
         $result = bcadd($this->_value, $value->_value, 0);
 
         return new static($result);
@@ -78,13 +63,12 @@ class BigInt
      * This function subtracts $value from $this and returns a new BigInt representing
      * the result.
      *
-     * @param  BigInt|Integer|string|int $value
+     * @param  BigInt $value
      *
      * @return BigInt
      */
-    public function subtract($value)
+    public function subtract(BigInt $value)
     {
-        $value = self::convertToBigInt($value);
         $result = bcsub($this->_value, $value->_value, 0);
 
         return new static($result);
@@ -95,13 +79,12 @@ class BigInt
      * This function multiplies $value by $this and returns a new BigInt representing
      * the result.
      *
-     * @param  BigInt|Integer|string|int $value
+     * @param  BigInt $value
      *
      * @return BigInt
      */
-    public function multiply($value)
+    public function multiply(BigInt $value)
     {
-        $value = self::convertToBigInt($value);
         $result = bcmul($this->_value, $value->_value, 0);
 
         return new static($result);
@@ -112,13 +95,12 @@ class BigInt
      * This function divides $this by $value and returns a new BigInt representing the
      * result.
      *
-     * @param  BigInt|Integer|string|int $value
+     * @param  BigInt
      *
      * @return BigInt
      */
-    public function divide($value)
+    public function divide(BigInt $value)
     {
-        $value = self::convertToBigInt($value);
         $result = bcdiv($this->_value, $value->_value, 0);
 
         return new static($result);
@@ -129,13 +111,12 @@ class BigInt
      * This function divides $this by $value and returns a new BigInt representing the
      * modulus.
      *
-     * @param  BigInt|Integer|string|int $value
+     * @param  BigInt
      *
      * @return BigInt
      */
-    public function modulus($value)
+    public function modulus(BigInt $value)
     {
-        $value = self::convertToBigInt($value);
         $result = bcmod($this->_value, $value->_value);
 
         return new static($result);
@@ -152,13 +133,12 @@ class BigInt
      *       0 $this = $value
      *       1 $this > $value
      *
-     * @param BigInt|Integer|string|int $value
+     * @param BigInt
      *
      * @return int
      */
     public function compare($value)
     {
-        $value = self::convertToBigInt($value);
         if($this->_value < $value->_value)
         {
             return -1;
