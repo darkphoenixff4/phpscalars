@@ -186,7 +186,11 @@ class Decimal
      */
     public function toString()
     {
-        return rtrim($this->_value, '0.');
+        $val = $this->_value;
+        if (strpos($val, '.') !== false) {
+            $val = rtrim($val,'0');
+        }
+        return rtrim($val,'.');
     }
 
 
